@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'aflkp=@uqa&$xahbe!ozc4)giqz-6$ix)c@nrl+iga%4+6x!ox'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool) # True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['flasher-env.eba-hxu3mssn.us-west-2.elasticbeanstalk.com']
 
 
 EMAIL_USE_TLS = True
@@ -154,10 +154,8 @@ MESSAGE_TAGS = {
 }
 
 # SMTP configurations
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ak1888786@gmail.com'
-EMAIL_HOST_PASSWORD = 'Jfgy8943@'
-# EMAIL_HOST_USER = 'anuragk1888@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Creative1888'
-EMAIL_USE_TLS = True
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
